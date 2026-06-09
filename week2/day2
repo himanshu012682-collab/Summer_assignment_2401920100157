@@ -1,0 +1,65 @@
+//question2
+sort(s1.begin(), s1.end());
+
+        for (int i = 0; i < s2.length(); i++) {
+            for (int j = i; j < s2.length(); j++) {
+                string subStr = s2.substr(i, j - i + 1);
+                sort(subStr.begin(), subStr.end());
+
+                if (subStr == s1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+//question 2
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+         int charFrequency[128] = {0};
+      
+    
+        int maxLength = 0;
+        int stringLength = s.size();
+      
+        int left = 0;
+        for (int right = 0; right < stringLength; ++right) {
+    
+            ++charFrequency[s[right]];
+          
+            
+            while (charFrequency[s[right]] > 1) {
+                --charFrequency[s[left]];
+                ++left;
+            }
+          
+            maxLength = max(maxLength, right - left + 1);
+        }
+      
+        return maxLength;
+        
+        
+    }
+};
+
+
+//question 3
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int n = s.size(), m = p.size();
+        vector<int> res;
+        sort(p.begin(), p.end());
+
+        for (int i = 0; i <= n - m; i++) {
+            string sub = s.substr(i, m);
+            sort(sub.begin(), sub.end());
+            if (sub == p) {
+                res.push_back(i);
+            }
+        }
+        return res;
+    }
+};
