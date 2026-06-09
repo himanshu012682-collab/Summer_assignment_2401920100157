@@ -1,0 +1,61 @@
+//question1
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+         if (s.length() != t.length()) {
+            return false;
+        }
+
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+        return s == t;
+        
+    }
+};
+//Question 2
+class Solution {
+public:
+    int firstUniqChar(string s) {
+      
+        int charFrequency[26] = {0};
+      
+        
+        for (char& c : s) {
+            charFrequency[c - 'a']++;
+        }
+      
+    
+        int stringLength = s.size();
+      
+        
+        for (int i = 0; i < stringLength; ++i) {
+            if (charFrequency[s[i] - 'a'] == 1) {
+                return i;  
+            }
+        }
+      
+        
+        return -1;
+    }
+};
+
+//question3
+
+class Solution {
+ public:
+  
+  bool canConstruct(string ransomNote, string magazine) {
+    vector<int> count(26);
+
+    for (const char c : magazine)
+      ++count[c - 'a'];
+
+    for (const char c : ransomNote) {
+      if (count[c - 'a'] == 0)
+        return false;
+      --count[c - 'a'];
+    }
+
+    return true;
+  }
+};
