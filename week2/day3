@@ -1,0 +1,55 @@
+//question 1
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int n=needle.length();
+        for(int i=0;i<haystack.length();i++){
+            string temp= haystack.substr(i,n);
+            if(temp==needle ){
+                return i;
+            }
+        }
+
+      //question 2
+
+      class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int count=0;
+        int n=s.length();
+        int m=t.length();
+        if(m<n){
+            return false;
+        }
+        sort(t.begin(),t.end());
+        sort(s.begin(),s.end());
+        for(int i=0;i<n;i++){
+            if(s[i]==t[i]){
+                count++;
+            }
+        }
+        if(count==n){
+            return true;
+        }
+        return false;
+    
+        
+    }
+};
+
+  //question 3
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        string doubledString = s + s;
+      
+        
+        size_t foundPosition = doubledString.find(s, 1);
+      
+        
+        return foundPosition < s.size();
+    }
+};
+
+      
