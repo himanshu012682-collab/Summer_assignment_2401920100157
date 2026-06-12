@@ -1,0 +1,79 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> res;
+        for (const auto& s : strs) {
+            string sortedS = s;
+            sort(sortedS.begin(), sortedS.end());
+            res[sortedS].push_back(s);
+        }
+        vector<vector<string>> result;
+        for (auto& pair : res) {
+            result.push_back(pair.second);
+        }
+        return result;
+    }
+};
+
+//question 2
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int writeIndex = 0;  
+        int arrayLength = chars.size();
+      
+        
+        for (int readIndex = 0, nextIndex = readIndex + 1; readIndex < arrayLength;) {
+            
+            while (nextIndex < arrayLength && chars[nextIndex] == chars[readIndex]) {
+                ++nextIndex;
+            }
+          
+            
+            chars[writeIndex++] = chars[readIndex];
+          
+        
+            int groupSize = nextIndex - readIndex;
+            if (groupSize > 1) {
+                
+                string countStr = to_string(groupSize);
+                for (char digit : countStr) {
+                    chars[writeIndex++] = digit;
+                }
+            }
+          
+          
+            readIndex = nextIndex;
+        }
+      
+        
+        return writeIndex;
+    }
+};
+
+//question3
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string res = "";
+        int resLen = 0;
+
+        for (int i = 0; i < s.size(); i++) {
+            for (int j = i; j < s.size(); j++) {
+                int l = i, r = j;
+                while (l < r && s[l] == s[r]) {
+                    l++;
+                    r--;
+                }
+
+                if (l >= r && resLen < (j - i + 1)) {
+                    res = s.substr(i, j - i + 1);
+                    resLen = j - i + 1;
+                }
+            }
+        }
+
+        return res;
+    }
+};
